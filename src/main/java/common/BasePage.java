@@ -33,12 +33,27 @@ public class BasePage {
 		return By.xpath(locator);
 	}
 	
+	//Get Dynamic Locator
+	public String getDynamicLocator(String locator, String... params) {
+		return String.format(locator, (Object[]) params);
+	}
+	
 	public WebElement getElement(WebDriver driver, String locator) {
 		return driver.findElement(getByXpath(locator));
 	}
 	
+	//Get Dynamic Element
+	public WebElement getElement(WebDriver driver, String locator, String... params) {
+		return driver.findElement(getByXpath(getDynamicLocator(locator, params)));
+	}
+	
 	public String getTextOfElement(WebDriver driver, String locator) {
 		return getElement(driver, locator).getText();
+	}
+	
+	//Get Dynamic Text Element
+	public String getTextOfElement(WebDriver driver, String locator, String... params) {
+		return getElement(driver, locator, params).getText();
 	}
 	
 	public void clickToElement(WebDriver driver, String locator) {
@@ -50,6 +65,12 @@ public class BasePage {
 		getElement(driver, locator).sendKeys(valueInput);
 	}
 	
+	//Dynamic send keys
+	public void sendKeysToElement(WebDriver driver, String locator, String valueInput, String... params) {
+		getElement(driver, locator, params).clear();
+		getElement(driver, locator, params).sendKeys(valueInput);
+	}
+	
 	public void sendEnterToElement(WebDriver driver, String locator) {
 		getElement(driver, locator).sendKeys(Keys.ENTER);
 	}
@@ -58,5 +79,15 @@ public class BasePage {
 	public void waitForElementClickable(WebDriver driver, String locator) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, 10);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
+	}
+	
+	public void waitForElementVisible(WebDriver driver, String locator) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, 10);
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
+	}
+	
+	public void waitForElementVisible(WebDriver driver, String locator, String... params) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, 10);
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(getDynamicLocator(locator, params))));
 	}
 }
