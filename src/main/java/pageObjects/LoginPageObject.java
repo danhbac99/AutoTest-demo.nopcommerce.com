@@ -34,6 +34,13 @@ public class LoginPageObject extends BasePage {
 	
 	public boolean checkLoginFail(String value) {
 		String errorMessage = getTextOfElement(driver, LoginPageUI.LOGIN_FAIL_MSG);
-		return errorMessage.equals(value);
+		return errorMessage.contains(value);
 	}
+	
+	public boolean checkLoginSuccess(String value) {
+		String successMessage = getPageTitle(driver);
+		return successMessage.equals(value);
+	}
+	
+	
 }

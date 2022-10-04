@@ -1,5 +1,7 @@
 package common;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -42,6 +44,10 @@ public class BasePage {
 		return driver.findElement(getByXpath(locator));
 	}
 	
+	public List<WebElement> getElements(WebDriver driver, String locator) {
+		return driver.findElements(getByXpath(locator));
+	}
+	
 	//Get Dynamic Element
 	public WebElement getElement(WebDriver driver, String locator, String... params) {
 		return driver.findElement(getByXpath(getDynamicLocator(locator, params)));
@@ -56,8 +62,21 @@ public class BasePage {
 		return getElement(driver, locator, params).getText();
 	}
 	
+	public String getAttribute(WebDriver driver, String locator) {
+		return getElement(driver, locator).getAttribute("value");
+	}
+	
+	//Get dynamic Attributes
+	public String getAttributes(WebDriver driver, String locator, String... params) {
+		return getElement(driver, locator, params).getAttribute("value");
+	}
+	
 	public void clickToElement(WebDriver driver, String locator) {
 		getElement(driver, locator).click();
+	}
+	
+	public void clickToElement(WebDriver driver, String locator, String...params) {
+		getElement(driver, locator, params).click();
 	}
 	
 	public void sendKeysToElement(WebDriver driver, String locator, String valueInput) {
@@ -79,6 +98,11 @@ public class BasePage {
 	public void waitForElementClickable(WebDriver driver, String locator) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, 10);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
+	}
+	
+	public void waitForElementClickable(WebDriver driver, String locator, String... params) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, 10);
+		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(getDynamicLocator(locator, params))));
 	}
 	
 	public void waitForElementVisible(WebDriver driver, String locator) {

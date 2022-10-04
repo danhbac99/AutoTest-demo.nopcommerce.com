@@ -1,11 +1,14 @@
 package com.nopcommerce.demo;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import common.BaseTest;
+import common.GlobalConstant;
 import pageObjects.LoginPageObject;
 
 public class TS_02_Login extends BaseTest {
@@ -14,10 +17,11 @@ public class TS_02_Login extends BaseTest {
 	String email = "bac5@gmail.com";
 	String passWord = "123456";
 
+	@Parameters({"browser"})
 	@BeforeClass
-	public void beforeClass() {
+	public void beforeClass(String browserName) {
 		String regisURL = "https://demo.nopcommerce.com/login?returnUrl=%2F";
-		driver = getBrowserDriver(regisURL);
+		driver = getBrowserDriver(regisURL, browserName);
 		loginPageObj = new LoginPageObject(driver);
 	}
 
@@ -29,7 +33,7 @@ public class TS_02_Login extends BaseTest {
 	@Test
 	public void TC_01_LoginWithEmptyData() {
 		loginPageObj.clickToLoginButton();
-		loginPageObj.checkErrorEmail("Please enter your email");
+		Assert.assertTrue(loginPageObj.checkErrorEmail("Please enter your email"));
 	}
 	
 	@Test
@@ -47,7 +51,8 @@ public class TS_02_Login extends BaseTest {
 		loginPageObj.enterTextToEmailPasswordbox("123456");
 		loginPageObj.clickToLoginButton();
 		
-		loginPageObj.checkLoginFail("Login was unsuccessful. Please correct the errors and try again. No customer account found");
+		Assert.assertTrue(loginPageObj.checkLoginFail("Login was unsuccessful. Please correct the errors and try again."));
+		Assert.assertTrue(loginPageObj.checkLoginFail("No customer account found"));
 	}
 	
 	@Test
@@ -56,9 +61,8 @@ public class TS_02_Login extends BaseTest {
 		loginPageObj.enterTextToEmailTextbox(email);
 		loginPageObj.clickToLoginButton();
 		
-		loginPageObj.checkLoginFail("Login was unsuccessful. Please correct the errors and try again. \n"
-				+ "\n"
-				+ "The credentials provided are incorrect ");
+		Assert.assertTrue(loginPageObj.checkLoginFail("Login was unsuccessful. Please correct the errors and try again."));
+		Assert.assertTrue(loginPageObj.checkLoginFail("No customer account found"));
 	}
 	
 	@Test
@@ -68,17 +72,18 @@ public class TS_02_Login extends BaseTest {
 		loginPageObj.enterTextToEmailPasswordbox("111111");
 		loginPageObj.clickToLoginButton();
 		
-		loginPageObj.checkLoginFail("Login was unsuccessful. Please correct the errors and try again. \n"
-				+ "\n"
-				+ "The credentials provided are incorrect ");
+		Assert.assertTrue(loginPageObj.checkLoginFail("Login was unsuccessful. Please correct the errors and try again."));
+		Assert.assertTrue(loginPageObj.checkLoginFail("No customer account found"));
 	}
 	
 	@Test
 	public void TC_06_loginSuccess() {
 		loginPageObj.refreshCurrentPage(driver);
-		loginPageObj.enterTextToEmailTextbox(email);
-		loginPageObj.enterTextToEmailPasswordbox(passWord);
+		loginPageObj.enterTextToEmailTextbox(GlobalConstant.username);
+		loginPageObj.enterTextToEmailPasswordbox(GlobalConstant.password);
 		loginPageObj.clickToLoginButton();
+		
+		Assert.assertTrue(loginPageObj.checkLoginSuccess("https://demo.nopcommerce.com/"));
 	}
 
 }

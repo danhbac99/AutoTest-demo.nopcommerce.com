@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import common.BaseTest;
@@ -17,14 +18,15 @@ public class TS_01_Register extends BaseTest {
 	HomePageObject homePageObj;
 	String firstName = "Bac";
 	String lastName = "Nguyen";
-	String email = "bac1@gmail.com";
+	String email = "bac7@gmail.com";
 	String passWord = "123456";
 	String confirmPassWord = "123456";
 
+	@Parameters({"browser"})
 	@BeforeClass
-	public void beforeClass() {
+	public void beforeClass(String browserName) {
 		String urlPage = "https://demo.nopcommerce.com/register?returnUrl=%2F";
-		driver = getBrowserDriver(urlPage);
+		driver = getBrowserDriver(urlPage, browserName);
 		registerPageObj = new RegisterPageObject(driver);
 		homePageObj = new HomePageObject(driver);
 	}
