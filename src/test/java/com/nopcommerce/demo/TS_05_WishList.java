@@ -48,19 +48,19 @@ public class TS_05_WishList extends BaseTest {
 	@Test
 	public void TC_01_AddProductToWishList() {
 		homePageObj.clickToProduct("Computers");
-		sleep(3);
+		
 		homePageObj.clickToComputerProduct("Desktops");
-		sleep(3);
+		
 		wishListPageObj.clickToProduct("3");
-		sleep(3);
+		
 		wishListPageObj.clickToAddWishListButton("3");
-		sleep(3);
+		
 		Assert.assertTrue(wishListPageObj.checkAddWishListSuccesMsg("The product has been added to your wishlist"));
 		System.out.println(wishListPageObj.getTextOfElement(driver, WishListPageUI.ADD_WISHLIST_SUCCESS_MSG));
 		wishListPageObj.clickToCloseNotification();
-		sleep(3);
+		
 		wishListPageObj.clickToWishListLink();
-		sleep(3);
+		
 		Assert.assertTrue(wishListPageObj.checkProductAdded(wishListPageObj.getProductName()));
 		System.out.println(wishListPageObj.getProductName());
 	}
@@ -68,13 +68,12 @@ public class TS_05_WishList extends BaseTest {
 	@Test
 	public void TC_02_AddProductToCart() {
 		wishListPageObj.clickToWishListLink();
-		sleep(3);
+		
 		wishListPageObj.clickToAddCartCheckbox();
-		sleep(3);
+		
 		wishListPageObj.clickToAddCartButton();
-		sleep(3);
+		
 		wishListPageObj.clickToShoppingCartLink();
-		sleep(3);
 		
 		Assert.assertTrue(wishListPageObj.checkProductInShoppingCart(wishListPageObj.getProductName()));
 		Assert.assertTrue(wishListPageObj.checkProductRemovedWishList());

@@ -49,7 +49,6 @@ public class TS_04_Search extends BaseTest {
 	public void TC_01_SearchWithEmptyData() {
 		searchPageObj.enterTextToSearchTextbox("");
 		searchPageObj.clickToSearchButton();
-		sleep(3);
 		
 		Assert.assertTrue(searchPageObj.checkSearchError("Search term minimum length is 3 characters"));
 	}
@@ -58,7 +57,6 @@ public class TS_04_Search extends BaseTest {
 	public void TC_02_SearchWithInvalidData() {
 		searchPageObj.enterTextToSearchTextbox("Macbook Pro 2040");
 		searchPageObj.clickToSearchButton();
-		sleep(3);
 		
 		Assert.assertTrue(searchPageObj.checkSearchNoResult("No products were found that matched your criteria."));
 	}
@@ -67,7 +65,6 @@ public class TS_04_Search extends BaseTest {
 	public void TC_03_SearchWithValidData() {
 		searchPageObj.enterTextToSearchTextbox("Lenovo");
 		searchPageObj.clickToSearchButton();
-		sleep(3);
 		
 		Assert.assertTrue(searchPageObj.checkResults("Lenovo"));
 	}
@@ -78,7 +75,6 @@ public class TS_04_Search extends BaseTest {
 		searchPageObj.clickToAdvanceSearch();
 		searchPageObj.selectCategory("Computers");
 		searchPageObj.clickToSearchButton();
-		sleep(3);
 		
 		Assert.assertTrue(searchPageObj.checkSearchNoResult("No products were found that matched your criteria."));
 	}
@@ -91,7 +87,6 @@ public class TS_04_Search extends BaseTest {
 		searchPageObj.clickToAutoSearch();
 		searchPageObj.clickToSearchInDesc();
 		searchPageObj.clickToSearchButton();
-		sleep(3);
 		
 		Assert.assertTrue(searchPageObj.checkResult("Apple MacBook Pro 13-inch"));
 	}

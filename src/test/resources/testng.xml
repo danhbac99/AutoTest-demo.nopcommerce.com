@@ -5,13 +5,16 @@
 	<test name="runTest">
 		<parameter name="browser" value="chrome" />
 		<classes>
-			<!-- <class name="com.nopcommerce.demo.TS_01_Register" /> -->
-			<!-- <class name="com.nopcommerce.demo.TS_02_Login" /> -->
-			<!-- <class name="com.nopcommerce.demo.TS_03_MyAccount" /> -->
-			<!-- <class name="com.nopcommerce.demo.TS_04_Search" /> -->
-			<!-- <class name="com.nopcommerce.demo.TS_05_WishList" /> -->
-			<!-- <class name="com.nopcommerce.demo.TS_06_ShoppingCart" /> -->
-			
+			<!--<class name="com.nopcommerce.demo.TS_01_Register" />
+			<class name="com.nopcommerce.demo.TS_02_Login" />
+			<class name="com.nopcommerce.demo.TS_03_MyAccount" />
+			<class name="com.nopcommerce.demo.TS_04_Search" />
+			<class name="com.nopcommerce.demo.TS_05_WishList" />
+			<class name="com.nopcommerce.demo.TS_06_ShoppingCart" />-->
+
+			<!--<class name="com.nopcommerce.demo.TS_03_MyAccount" />-->
+			<class name="com.nopcommerce.demo.TS_04_Search" />
+			<class name="com.nopcommerce.demo.TS_05_WishList" />
 			<class name="com.nopcommerce.demo.TS_06_ShoppingCart" />
 		</classes>
 	</test> <!-- runTest -->

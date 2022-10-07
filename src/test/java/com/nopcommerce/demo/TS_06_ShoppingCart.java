@@ -47,9 +47,7 @@ public class TS_06_ShoppingCart extends BaseTest {
 	@Test
 	public void TC_01_UpdateShoppingCart() {
 		shoppingCartObj.changeQuantity("5");
-		sleep(3);
 		shoppingCartObj.clickToUpdateCartButton();
-		sleep(3);
 		Assert.assertTrue(shoppingCartObj.checkPageTitle("Shopping cart"));
 		Assert.assertTrue(shoppingCartObj.checkValueQuantity("5"));
 	}
@@ -57,7 +55,6 @@ public class TS_06_ShoppingCart extends BaseTest {
 	@Test
 	public void TC_02_RemoveFromCart() {
 		shoppingCartObj.clickToRemoveProduct();
-		sleep(3);
 		
 		Assert.assertTrue(shoppingCartObj.checkCartEmpty("Your Shopping Cart is empty!"));
 	}

@@ -38,7 +38,7 @@ public class LoginPageObject extends BasePage {
 	}
 	
 	public boolean checkLoginSuccess(String value) {
-		String successMessage = getPageTitle(driver);
+		String successMessage = getPageUrl(driver);
 		return successMessage.equals(value);
 	}
 	

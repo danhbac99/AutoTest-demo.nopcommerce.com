@@ -42,13 +42,7 @@ public class SearchPageObject extends BasePage {
 	}
 	
 	public boolean checkResults(String value) {
-		List<WebElement> products = getElements(driver, SearchUI.PRODUCTS_NAME);
-		for(WebElement product: products) {
-			if(product.getText().contains(value)) {
-				return true;
-			}
-		}
-		return false;
+		return isTitleDisplayedOnPage(driver, SearchUI.PRODUCTS_NAME, value);
 	}
 	
 	public void clickToAdvanceSearch() {

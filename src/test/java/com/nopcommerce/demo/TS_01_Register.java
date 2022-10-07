@@ -18,7 +18,7 @@ public class TS_01_Register extends BaseTest {
 	HomePageObject homePageObj;
 	String firstName = "Bac";
 	String lastName = "Nguyen";
-	String email = "bac7@gmail.com";
+	String email = "bac90@gmail.com";
 	String passWord = "123456";
 	String confirmPassWord = "123456";
 
@@ -39,12 +39,6 @@ public class TS_01_Register extends BaseTest {
 	@Test
 	public void TC_01_RegisterWithEmptyData() {
 		registerPageObj.clickToRegisterButton();
-//		Assert.assertTrue(registerPageObj.checkFirstnameErrorMessage("First name is required."));
-//		Assert.assertTrue(registerPageObj.checkLastnameErrorMessage("Last name is required."));
-//		Assert.assertTrue(registerPageObj.checkEmailErrorMessage("Email is required."));
-//		Assert.assertTrue(registerPageObj.checkPasswordErrorMessage("Password is required."));
-//		Assert.assertTrue(registerPageObj.checkConfirmPasswordErrorMessage("Password is required."));
-//		sleep(3);
 		
 		Assert.assertTrue(registerPageObj.checkErrorMessage("FirstName", "First name is required."));
 		Assert.assertTrue(registerPageObj.checkErrorMessage("LastName", "Last name is required."));

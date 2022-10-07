@@ -32,20 +32,17 @@ public class MyAccountPageObject extends BasePage {
 
 	public void selectDate(String value) {
 		waitForElementClickable(driver, MyAccountUI.SELECT_DATE);
-		Select selectDate = new Select(getElement(driver, MyAccountUI.SELECT_DATE));
-		selectDate.selectByValue(value);
+		selectByValue(driver, MyAccountUI.SELECT_DATE, value);
 	}
 
 	public void selectMonth(String value) {
 		waitForElementClickable(driver, MyAccountUI.SELECT_MONTH);
-		Select selectMonth = new Select(getElement(driver, MyAccountUI.SELECT_MONTH));
-		selectMonth.selectByValue(value);
+		selectByValue(driver, MyAccountUI.SELECT_MONTH, value);
 	}
 
 	public void selectYear(String value) {
 		waitForElementClickable(driver, MyAccountUI.SELECT_YEAR);
-		Select selectYear = new Select(getElement(driver, MyAccountUI.SELECT_YEAR));
-		selectYear.selectByValue(value);
+		selectByValue(driver, MyAccountUI.SELECT_YEAR, value);
 	}
 
 	public void enterTextToCompanyName(String value) {
@@ -55,18 +52,12 @@ public class MyAccountPageObject extends BasePage {
 
 	public void clickCheckboxOption() {
 		waitForElementClickable(driver, MyAccountUI.OPTION_CHECKBOX);
-		WebElement newsLetterCheckBox = getElement(driver, MyAccountUI.OPTION_CHECKBOX);
-		if (!newsLetterCheckBox.isSelected()) {
-			newsLetterCheckBox.click();
-		}
+		clickCheckbox(driver, MyAccountUI.OPTION_CHECKBOX);
 	}
 
 	public void unClickCheckboxOption() {
 		waitForElementClickable(driver, MyAccountUI.OPTION_CHECKBOX);
-		WebElement newsLetterCheckBox = getElement(driver, MyAccountUI.OPTION_CHECKBOX);
-		if (newsLetterCheckBox.isSelected()) {
-			newsLetterCheckBox.click();
-		}
+		unClickCheckbox(driver, MyAccountUI.OPTION_CHECKBOX);
 	}
 
 	public void clickToSaveButton() {
@@ -85,43 +76,31 @@ public class MyAccountPageObject extends BasePage {
 		return companyName.equals(value);
 	}
 
-	public WebElement verifyChecked() {
-		WebElement newsLetterCheckBox = getElement(driver, MyAccountUI.OPTION_CHECKBOX);
-		return newsLetterCheckBox;
+	public boolean verifyChecked() {
+		return verifyCheckboxChecked(driver, MyAccountUI.OPTION_CHECKBOX);
 	}
 
-	public WebElement verifyMaleChecked() {
-		WebElement maleChecked = getElement(driver, MyAccountUI.MALE_RADIO);
-		return maleChecked;
+	public boolean verifyMaleChecked() {
+		return verifyCheckboxChecked(driver, MyAccountUI.MALE_RADIO);
 	}
-	
-	public WebElement verifyFemaleChecked() {
-		WebElement feMaleChecked = getElement(driver, MyAccountUI.FEMALE_RADIO);
-		return feMaleChecked;
+
+	public boolean verifyFemaleChecked() {
+		return verifyCheckboxChecked(driver, MyAccountUI.FEMALE_RADIO);
 	}
-	
+
 	public boolean checkDate(String value) {
 		waitForElementClickable(driver, MyAccountUI.SELECT_DATE);
-		Select selectDate = new Select(getElement(driver, MyAccountUI.SELECT_DATE));
-		WebElement options = selectDate.getFirstSelectedOption();
-		String selected = options.getText();
-		return selected.equals(value);
+		return checkSelectValue(driver, MyAccountUI.SELECT_DATE, value);
 	}
-	
+
 	public boolean checkMonth(String value) {
 		waitForElementClickable(driver, MyAccountUI.SELECT_MONTH);
-		Select selectMonth = new Select(getElement(driver, MyAccountUI.SELECT_MONTH));
-		WebElement options = selectMonth.getFirstSelectedOption();
-		String selected = options.getText();
-		return selected.equals(value);
+		return checkSelectValue(driver, MyAccountUI.SELECT_MONTH, value);
 	}
-	
+
 	public boolean checkYear(String value) {
 		waitForElementClickable(driver, MyAccountUI.SELECT_YEAR);
-		Select selectYear = new Select(getElement(driver, MyAccountUI.SELECT_YEAR));
-		WebElement options = selectYear.getFirstSelectedOption();
-		String selected = options.getText();
-		return selected.equals(value);
+		return checkSelectValue(driver, MyAccountUI.SELECT_YEAR, value);
 	}
 
 	//////
@@ -141,15 +120,17 @@ public class MyAccountPageObject extends BasePage {
 	}
 
 	public void selectAddressCountry(String value) {
-		waitForElementClickable(driver, MyAccountUI.COUNTRY_ADDRESS);
-		Select selectCountry = new Select(getElement(driver, MyAccountUI.COUNTRY_ADDRESS));
-		selectCountry.selectByValue(value);
+//		waitForElementClickable(driver, MyAccountUI.COUNTRY_ADDRESS);
+//		Select selectCountry = new Select(getElement(driver, MyAccountUI.COUNTRY_ADDRESS));
+//		selectCountry.selectByVisibleText(value);
+		selectByText(driver, MyAccountUI.COUNTRY_ADDRESS, value);
 	}
 
 	public void selectAddressProvide(String value) {
-		waitForElementClickable(driver, MyAccountUI.PROVIDE_ADDRESS);
-		Select selectProvide = new Select(getElement(driver, MyAccountUI.PROVIDE_ADDRESS));
-		selectProvide.selectByValue(value);
+//		waitForElementClickable(driver, MyAccountUI.PROVIDE_ADDRESS);
+//		Select selectCountry = new Select(getElement(driver, MyAccountUI.PROVIDE_ADDRESS));
+//		selectCountry.selectByVisibleText(value);
+		selectByText(driver, MyAccountUI.PROVIDE_ADDRESS, value);
 	}
 
 	public void clickToSaveAddress() {
